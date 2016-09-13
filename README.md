@@ -1,4 +1,6 @@
-# wyproxy docs
+# wyproxy
+Proxying And Recording HTTP/HTTPs and Socks5 to Mysql Database.   
+
 ### 配置和启动开发环境
 ```bash
 $ virtualenv --no-site-packages wyproxy
