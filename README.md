@@ -8,11 +8,16 @@ $ cd wyproxy
 $ source bin/activate
 ```
 
+### 开发环境依赖
+```bash
+yum install python-devel libxml2-devel libxslt-devel libjpeg-turbo-devel
+```
+
 ### 获取代码
 ```bash
 $ mkdir src
 $ cd ./src
-$ git clone http://github.com/ring04h/wyproxy.git
+$ git clone https://github.com/ring04h/wyproxy.git
 ```
 ### 安装python依赖库
 ```
@@ -37,4 +42,3 @@ $ python wyproxy.py -p 8080 -m socks5
 ```bash
 $ python wyproxy.py -p 8080 -m socks5 -d
 ```
-
