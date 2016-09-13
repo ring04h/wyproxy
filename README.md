@@ -20,6 +20,8 @@ $ pip install -r requirements.txt
 ```
 ### 安装MYSQL数据库
 ```bash
+$ yum install mysql-server mysql-devel
+$ service mysqld start
 $ mysql -uroot -p < wyproxy.sql
 ```
 ### 启动wyproxy
