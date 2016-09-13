@@ -10,7 +10,7 @@ $ source bin/activate
 
 ### 开发环境依赖
 ```bash
-yum install python-devel libxml2-devel libxslt-devel libjpeg-turbo-devel
+yum install python-devel libxml2-devel libxslt-devel libjpeg-turbo-devel libffi-devel
 ```
 
 ### 获取代码
