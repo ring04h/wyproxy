@@ -3,7 +3,8 @@
 Enable/Disable OS X network device proxy and wrap wyproxy
 
 ## 使用帮助
-```
+
+```bash
 usage: warpper.py [-h] [-d] [-ip] [-p] [-m]
 
 Enable/Disable OS X network device proxy and wrap wyproxy
