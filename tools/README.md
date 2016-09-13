@@ -1,5 +1,5 @@
 ## Mac OS X 系统代理设置器
-通过修改[系统网卡设备]的代理配置项, 实现[系统数据]都通过发送。
+通过修改[系统网卡设备]的代理配置项, 实现[系统数据]都通过发送。   
 Enable/Disable OS X network device proxy and wrap wyproxy
 
 ## 使用帮助
@@ -19,20 +19,20 @@ optional arguments:
 
 ### 配置代理
 
-wyproxy服务器
-IP地址: proxy.wuyun.org
-代理端口: 19191
-代理类型: socks5
+wyproxy服务器   
+IP地址: proxy.wuyun.org   
+代理端口: 19191   
+代理类型: socks5   
 
 ```bash
 $ sudo python warpper.py -ip proxy.wuyun.org -p 19191 -m socks5
 Enabling proxy on socks5 proxy.wuyun.org 19191...
 Enable proxy successfully...
 ```
-
-IP地址: proxy.wuyun.org
-代理端口: 19191
-代理类型: http/https
+   
+IP地址: proxy.wuyun.org   
+代理端口: 19191   
+代理类型: http/https   
 
 ```bash
 $ sudo python warpper.py -ip proxy.wuyun.org -p 19191 -m http
