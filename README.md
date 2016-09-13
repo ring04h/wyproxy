@@ -1,6 +1,6 @@
 # wyproxy
+Proxying And Recording HTTP/HTTPs and Socks5, Save To Mysql Database.   
 HTTP/HTTPS, Socks5代理服务器, 并可以将请求记录保存到后台数据库。   
-Proxying And Recording HTTP/HTTPs and Socks5 to Mysql Database.   
 
 记录字段如下:   
 - host 
