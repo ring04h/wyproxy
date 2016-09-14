@@ -121,7 +121,7 @@ if __name__ == '__main__':
         help="restart wyproxy daemond")
     parser.add_argument("-p","--port",metavar="",default="8080",
         help="wyproxy bind port")
-    parser.add_argument("-m","--mode",metavar="",choices=['http','socks5'],default="http",
+    parser.add_argument("-m","--mode",metavar="",choices=['http','socks5','transparent'],default="http",
         help="wyproxy mode (HTTP/HTTPS, Socks5)")
     args = parser.parse_args()
 
