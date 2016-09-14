@@ -69,8 +69,15 @@ $ wget https://bootstrap.pypa.io/get-pip.py --no-check-certificate
 $ python get-pip.py
 ```
 
+yum在Python2.7环境下无法使用，需要让它使用python2.6.6的环境
+```bash
+$ vim /usr/bin/yum # 修改第一行的程序执行环境
+#!/usr/bin/python   ->    #!/usr/bin/python2.6.6
+```
+
 ### 获取代码
 ```bash
+$ yum install git
 $ mkdir src
 $ cd ./src
 $ git clone https://github.com/ring04h/wyproxy.git
