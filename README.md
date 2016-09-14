@@ -2,7 +2,27 @@
 Proxying And Recording HTTP/HTTPs and Socks5, Save To Mysql Database.   
 HTTP/HTTPS, Socks5代理服务器, 并可以将请求记录保存到后台数据库。   
 
-记录字段如下:   
+帮助说明   
+
+```bash
+$ python wyproxy.py -h
+usage: wyproxy.py [-h] [-d] [-stop] [-restart] [-p] [-m]
+
+wyproxy v 1.0 ( Proxying And Recording HTTP/HTTPs and Socks5)
+
+optional arguments:
+  -h, --help           show this help message and exit
+  -d, --daemon         start wyproxy with daemond
+  -stop, --stop        stop wyproxy daemond
+  -restart, --restart  restart wyproxy daemond
+  -p , --port          wyproxy bind port
+  -m , --mode          wyproxy mode (HTTP/HTTPS, Socks5)
+```
+
+记录字段如下   
+
+![github](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/capture.png "github")   
+
 - method    (HTTP/HTTPS/OPTIONS)
 - scheme    (http/https/ftp)
 - host      (www.wuyun.org)
@@ -77,23 +97,6 @@ $ source bin/activate
 ```
 
 ### 启动wyproxy
-
-帮助说明   
-
-```bash
-$ python wyproxy.py -h
-usage: wyproxy.py [-h] [-d] [-stop] [-restart] [-p] [-m]
-
-wyproxy v 1.0 ( Proxying And Recording HTTP/HTTPs and Socks5)
-
-optional arguments:
-  -h, --help           show this help message and exit
-  -d, --daemon         start wyproxy with daemond
-  -stop, --stop        stop wyproxy daemond
-  -restart, --restart  restart wyproxy daemond
-  -p , --port          wyproxy bind port
-  -m , --mode          wyproxy mode (HTTP/HTTPS, Socks5)
-```
 
 普通方式启动   
 
