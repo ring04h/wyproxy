@@ -144,3 +144,30 @@ $ wget https://raw.githubusercontent.com/ring04h/wyproxy/master/ssl/mitmproxy-ca
 选择始终信任该证书, 即可生效, 便能成功捕捉所有HTTPS的流量
 ![key_trust](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/key_trust.png "key_trust")   
 
+### iPhone配置全局Socks5代理支持   
+用代理自动配置文件pac给iPhone和iPad设备添加socks代理    
+
+首先启动wyproxy代理服务器, 设置代理类型为socks5    
+    
+```
+$ python wyproxy.py -p 8080 -m socks5 -d
+```
+    
+找一台开启了HTTPD服务的服务器, 新建一个.pac文件, 内容如下    
+    
+```pac
+function FindProxyForURL(url, host)
+{
+    if (isInNet(host, "192.168.199.0", "255.255.255.0"))
+        return "DIRECT";
+
+    return "SOCKS 106.75.147.67:8080";
+}
+```
+     
+设置iPhone的无线配置, 代理处填上你的HTTPD服务器地址    
+http://s5.wuyun.org/s5.pac   
+
+![enable_s5](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/enable_s5.png "enable_s5")   
+    
+这样iPhone上面, 所有的流量，全都会经过wyproxy的socks5代理了
