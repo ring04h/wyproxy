@@ -184,3 +184,43 @@ http://s5.wuyun.org/s5.pac
 ![enable_s5](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/enable_s5.png "enable_s5")   
     
 这样iPhone上面, 所有的流量，全都会经过wyproxy的socks5代理了
+
+## 使用技巧
+### 在单服务器运行多个代理服务
+运行socks5服务, 监听1080端口   
+   
+```bash
+$ python wyproxy.py -p 1080 -m socks5 -pid /tmp/1080.pid -d
+wyproxy daemon starting...
+wyProxy daemon started successfully 
+2016-09-14 17:11:20,333 [INFO] wyproxy is starting...
+2016-09-14 17:11:20,334 [INFO] Listening: 0.0.0.0:1080 socks5
+2016-09-14 17:11:20,390 [INFO] wyproxy started successfully...
+```
+
+停止1080端口的服务   
+   
+```bash
+$ python wyproxy.py -stop -pid /tmp/1080.pid
+wyproxy daemon stopping...
+wyproxy daemon stopped successfully
+```
+   
+运行socks5服务, 监听1081端口   
+   
+```bash
+$ python wyproxy.py -p 1081 -m socks5 -pid /tmp/1081.pid -d
+wyproxy daemon starting...
+wyProxy daemon started successfully 
+2016-09-14 17:11:27,564 [INFO] wyproxy is starting...
+2016-09-14 17:11:27,566 [INFO] Listening: 0.0.0.0:1081 socks5
+2016-09-14 17:11:27,583 [INFO] wyproxy started successfully...
+```
+
+停止1081端口的服务   
+   
+```bash
+$ python wyproxy.py -stop -pid /tmp/1081.pid
+wyproxy daemon stopping...
+wyproxy daemon stopped successfully
+```
