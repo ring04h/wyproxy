@@ -95,8 +95,11 @@ def run(args):
         args.port = read_cnf().get('port')
         args.mode = read_cnf().get('mode')
 
+    if not args.pidfile:
+        args.pidfile = '/tmp/wyproxy.pid'
+        
     wyproxy = wyDaemon(
-        pidfile = '/tmp/wyproxy.pid',
+        pidfile = args.pidfile,
         proxy_port = args.port,
         proxy_mode = args.mode)
 
@@ -119,10 +122,12 @@ if __name__ == '__main__':
         help="stop wyproxy daemond")
     parser.add_argument("-restart","--restart",action="store_true",required=False,
         help="restart wyproxy daemond")
+    parser.add_argument("-pid","--pidfile",metavar="",
+        help="wyproxy daemond pidfile name")
     parser.add_argument("-p","--port",metavar="",default="8080",
         help="wyproxy bind port")
     parser.add_argument("-m","--mode",metavar="",choices=['http','socks5','transparent'],default="http",
-        help="wyproxy mode (HTTP/HTTPS, Socks5)")
+        help="wyproxy mode (HTTP/HTTPS, Socks5, Transparent)")
     args = parser.parse_args()
 
     try:

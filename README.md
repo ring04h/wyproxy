@@ -17,7 +17,7 @@ HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台
 
 ```bash
 $ python wyproxy.py -h
-usage: wyproxy.py [-h] [-d] [-stop] [-restart] [-p] [-m]
+usage: wyproxy.py [-h] [-d] [-stop] [-restart] [-pid] [-p] [-m]
 
 wyproxy v 1.0 ( Proxying And Recording HTTP/HTTPs and Socks5)
 
@@ -26,8 +26,10 @@ optional arguments:
   -d, --daemon         start wyproxy with daemond
   -stop, --stop        stop wyproxy daemond
   -restart, --restart  restart wyproxy daemond
+  -pid , --pidfile     wyproxy daemond pidfile name
   -p , --port          wyproxy bind port
   -m , --mode          wyproxy mode (HTTP/HTTPS, Socks5, Transparent)
+
 ```
 
 记录字段如下   
