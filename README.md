@@ -46,7 +46,7 @@ optional arguments:
 
 ### 开发环境依赖
 ```bash
-$ yum install python-devel libxml2-devel libxslt-devel libjpeg-turbo-devel libffi-devel
+$ yum install python-devel libxml2-devel libxslt-devel libjpeg-turbo-devel libffi-devel mysql-devel
 ```
 
 ### 编译安装Python2.7环境
@@ -82,13 +82,15 @@ $ mkdir src
 $ cd ./src
 $ git clone https://github.com/ring04h/wyproxy.git
 ```
+
 ### 安装python依赖库
 ```
 $ pip install -r requirements.txt
 ```
+
 ### 安装MYSQL数据库
 ```bash
-$ yum install mysql-server mysql-devel
+$ yum install mysql-server
 $ service mysqld start
 $ mysql -uroot -p < wyproxy.sql
 ```
