@@ -86,7 +86,7 @@ class wyDaemon(Daemon):
 
     def run(self):
         logging.info("wyproxy is starting...")
-        logging.info("Mode: {} Listen: 0.0.0.0:{}".format(
+        logging.info("Mode: {} Listening: 0.0.0.0:{}".format(
             self.proxy_mode, self.proxy_port))
         start_server(self.proxy_port, self.proxy_mode)
 
@@ -100,14 +100,14 @@ def run(args):
         proxy_port = args.port,
         proxy_mode = args.mode)
 
-    # if args.daemon:
-    #     wyproxy.start()
-    # elif args.stop:
-    #     wyproxy.stop()
-    # elif args.restart:
-    #     wyproxy.restart()
-    # else:
-    #     wyproxy.run()
+    if args.daemon:
+        wyproxy.start()
+    elif args.stop:
+        wyproxy.stop()
+    elif args.restart:
+        wyproxy.restart()
+    else:
+        wyproxy.run()
 
 if __name__ == '__main__':
 
