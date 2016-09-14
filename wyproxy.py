@@ -4,12 +4,11 @@
 import sys
 import argparse
 import logging
-import json
 
 from daemon import Daemon
 from mitmproxy import flow, proxy
 from mitmproxy.proxy.server import ProxyServer
-from untils import ResponseParser
+from untils import ResponseParser, save_cnf, read_cnf
 from plugins import MysqlInterface
 
 logging.basicConfig(
@@ -86,14 +85,15 @@ class wyDaemon(Daemon):
 
     def run(self):
         logging.info("wyproxy is starting...")
-        logging.info("Mode: {} Listening: 0.0.0.0:{}".format(
-            self.proxy_mode, self.proxy_port))
+        logging.info("Listening: 0.0.0.0:{} {}".format(
+            self.proxy_port, self.proxy_mode))
         start_server(self.proxy_port, self.proxy_mode)
 
 def run(args):
 
-    # save wyproxy client options
-    json.dump(args.__dict__, open('.proxy.cnf', 'w'))
+    if args.restart:
+        args.port = read_cnf().get('port')
+        args.mode = read_cnf().get('mode')
 
     wyproxy = wyDaemon(
         pidfile = '/tmp/wyproxy.pid',
@@ -101,12 +101,14 @@ def run(args):
         proxy_mode = args.mode)
 
     if args.daemon:
+        save_cnf(args)
         wyproxy.start()
     elif args.stop:
         wyproxy.stop()
     elif args.restart:
         wyproxy.restart()
     else:
+        save_cnf(args)
         wyproxy.run()
 
 if __name__ == '__main__':

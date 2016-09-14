@@ -1,7 +1,24 @@
 # encoding: utf-8
 
+import json
 import mimetypes
 from config import media_types, static_files, static_ext, save_content
+
+def save_cnf(args):
+    """save wyproxy client options"""
+    try:
+        fd = open('.proxy.cnf', 'w')
+        json.dump(args.__dict__, fd)
+    finally:
+        fd.close()
+
+def read_cnf():
+    """read wyproxy client options conf"""
+    try:
+        fd = open('.proxy.cnf', 'r')
+        return json.load(fd)
+    finally:
+        fd.close()
 
 class ResponseParser(object):
     """docstring for ResponseParser"""
