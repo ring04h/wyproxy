@@ -4,6 +4,7 @@
 import sys
 import argparse
 import logging
+import json
 
 from daemon import Daemon
 from mitmproxy import flow, proxy
@@ -29,8 +30,9 @@ class WYProxy(flow.FlowMaster):
             flow.FlowMaster.run(self)
         except KeyboardInterrupt:
             self.shutdown()
-            self.connection.close()
             logging.info("Ctrl C - stopping wyproxy server")
+        finally:
+            self.connection.close()
 
     def handle_request(self, f):
         f = flow.FlowMaster.handle_request(self, f)
@@ -84,23 +86,28 @@ class wyDaemon(Daemon):
 
     def run(self):
         logging.info("wyproxy is starting...")
+        logging.info("Mode: {} Listen: 0.0.0.0:{}".format(
+            self.proxy_mode, self.proxy_port))
         start_server(self.proxy_port, self.proxy_mode)
 
 def run(args):
+
+    # save wyproxy client options
+    json.dump(args.__dict__, open('.proxy.cnf', 'w'))
 
     wyproxy = wyDaemon(
         pidfile = '/tmp/wyproxy.pid',
         proxy_port = args.port,
         proxy_mode = args.mode)
 
-    if args.daemon:
-        wyproxy.start()
-    elif args.stop:
-        wyproxy.stop()
-    elif args.restart:
-        wyproxy.restart()
-    else:
-        wyproxy.run()
+    # if args.daemon:
+    #     wyproxy.start()
+    # elif args.stop:
+    #     wyproxy.stop()
+    # elif args.restart:
+    #     wyproxy.restart()
+    # else:
+    #     wyproxy.run()
 
 if __name__ == '__main__':
 
