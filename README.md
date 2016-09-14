@@ -3,20 +3,21 @@ Proxying And Recording HTTP/HTTPs and Socks5, Save To Mysql Database.
 HTTP/HTTPS, Socks5代理服务器, 并可以将请求记录保存到后台数据库。   
 
 记录字段如下:   
-- host 
-- port
-- url
-- path
-- extension
-- headers
-- content
-- request_headers
-- request_content
-- method
-- scheme
-- status_code
-- date_start
-- date_end
+- method    (HTTP/HTTPS/OPTIONS)
+- scheme    (http/https/ftp)
+- host      (www.wuyun.org)
+- port      (80/8080)
+- url       (https://www.wuyun.org/foo/bar.php?id=1)
+- path      (/foo/bar.php)
+- extension (bar.php)
+- query     (id=1)
+- headers   (http rfc headers)
+- content   (response contnet)
+- request_headers  (reqeust client headers)
+- request_content  (request data: liked post data)
+- status_code      (200/404/403)
+- date_start       (unix timestamp)
+- date_end         (unix timestamp)
 
 ## 环境要求
 - CentOS 6.4
