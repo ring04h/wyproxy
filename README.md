@@ -48,13 +48,6 @@ $ wget https://bootstrap.pypa.io/get-pip.py --no-check-certificate
 $ python get-pip.py
 ```
 
-### 配置和启动开发环境
-```bash
-$ virtualenv --no-site-packages wyproxy
-$ cd wyproxy
-$ source bin/activate
-```
-
 ### 获取代码
 ```bash
 $ mkdir src
@@ -71,6 +64,17 @@ $ yum install mysql-server mysql-devel
 $ service mysqld start
 $ mysql -uroot -p < wyproxy.sql
 ```
+
+### 开发环境
+
+或者你可以配置和启动一个virtualenv环境来独立运行wyproxy.   
+
+```bash
+$ virtualenv --no-site-packages wyproxy
+$ cd wyproxy
+$ source bin/activate
+```
+
 ### 启动wyproxy
 
 帮助说明   
