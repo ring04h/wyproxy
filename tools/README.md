@@ -20,7 +20,7 @@ optional arguments:
 ### 配置代理
 
 wyproxy服务器   
-> $ python wyproxy.py -p 19191 -m http -d   
+> $ python wyproxy.py -p 19191 -m socks5 -d   
 
 IP地址: proxy.wuyun.org   
 代理端口: 19191   
@@ -32,6 +32,9 @@ Enabling proxy on socks5 proxy.wuyun.org 19191...
 Enable proxy successfully...
 ```
    
+wyproxy服务器   
+> $ python wyproxy.py -p 19191 -m http -d 
+
 IP地址: proxy.wuyun.org   
 代理端口: 19191   
 代理类型: http/https   
