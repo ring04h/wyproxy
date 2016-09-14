@@ -121,14 +121,14 @@ $ python wyproxy.py -p 8080 -m socks5 -d
 
 ### 支持HTTPS, 需要配置客户端 SSL 证书
 #### iPhone 移动端, 使用Safari浏览器打开
-https://raw.githubusercontent.com/ring04h/wyproxy/master/ssl/mitmproxy-ca.pem
+https://raw.githubusercontent.com/ring04h/wyproxy/master/ssl/mitmproxy-ca.pem    
 会有如下图片提示, 点击右上角安装, 使证书状态变为绿色生效
 
 安装界面   
-![install_pem](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/install_pem.png "install_pem")
+![install_pem](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/install_pem.png =300px)
 
 成功后的界面   
-![install_pem_succ](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/install_pem_succ.png "install_pem_succ")   
+![install_pem_succ](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/install_pem_succ.png =300px)   
 
 #### Mac OS X 安装配置 SSL 证书 并信任
 ```bash
