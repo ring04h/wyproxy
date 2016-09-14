@@ -1,7 +1,11 @@
 # wyproxy
 Proxying And Recording HTTP/HTTPs and Socks5, Save To Mysql Database.  
 
-HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台数据库，帮助安全测试人员更加便捷的发现(客户端/APP/网页)中隐藏的接口或资源。     
+HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台数据库，   
+帮助安全测试人员更加便捷的发现(客户端/APP/网页)中隐藏的接口或资源。     
+
+同时支持流量handle回放数据功能, 
+在HTTP Header中插入 移动/联通/电信 营业厅的免流量域名头, 实现免流量代理上网。   
     
 支持场景    
 - iPhone App
