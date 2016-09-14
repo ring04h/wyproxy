@@ -21,7 +21,7 @@ optional arguments:
 
 记录字段如下   
 
-![github](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/catrure.png "github")   
+![github](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/captrue.png "github")   
 
 - method    (HTTP/HTTPS/OPTIONS)
 - scheme    (http/https/ftp)
