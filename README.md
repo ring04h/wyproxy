@@ -73,6 +73,23 @@ $ mysql -uroot -p < wyproxy.sql
 ```
 ### 启动wyproxy
 
+帮助说明   
+
+```bash
+$ python wyproxy.py -h
+usage: wyproxy.py [-h] [-d] [-stop] [-restart] [-p] [-m]
+
+wyproxy v 1.0 ( Proxying And Recording HTTP/HTTPs and Socks5)
+
+optional arguments:
+  -h, --help           show this help message and exit
+  -d, --daemon         start wyproxy with daemond
+  -stop, --stop        stop wyproxy daemond
+  -restart, --restart  restart wyproxy daemond
+  -p , --port          wyproxy bind port
+  -m , --mode          wyproxy mode (HTTP/HTTPS, Socks5)
+```
+
 普通方式启动   
 
 ```bash
