@@ -108,7 +108,6 @@ def run(args):
     elif args.restart:
         wyproxy.restart()
     else:
-        save_cnf(args)
         wyproxy.run()
 
 if __name__ == '__main__':
