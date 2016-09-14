@@ -1,6 +1,13 @@
 # wyproxy
-Proxying And Recording HTTP/HTTPs and Socks5, Save To Mysql Database.   
-HTTP/HTTPS, Socks5代理服务器, 并可以将请求记录保存到后台数据库。   
+Proxying And Recording HTTP/HTTPs and Socks5, Save To Mysql Database.  
+
+HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台数据库，帮助安全测试人员更加便捷的发现(客户端/APP/网页)中隐藏的接口或资源。     
+    
+支持场景    
+- iPhone App
+- iPad App
+- Mac OS X App
+- Android APP
 
 帮助说明   
 
@@ -16,7 +23,7 @@ optional arguments:
   -stop, --stop        stop wyproxy daemond
   -restart, --restart  restart wyproxy daemond
   -p , --port          wyproxy bind port
-  -m , --mode          wyproxy mode (HTTP/HTTPS, Socks5)
+  -m , --mode          wyproxy mode (HTTP/HTTPS, Socks5, Transparent)
 ```
 
 记录字段如下   
