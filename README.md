@@ -9,7 +9,7 @@ HTTP/HTTPS, Socks5代理服务器, 并可以将请求记录保存到后台数据
 - port      (80/8080)
 - url       (https://www.wuyun.org/foo/bar.php?id=1)
 - path      (/foo/bar.php)
-- extension (bar.php)
+- extension (php)
 - query     (id=1)
 - headers   (http rfc headers)
 - content   (response contnet)
