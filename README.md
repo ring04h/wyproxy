@@ -11,7 +11,7 @@ HTTP/HTTPS, Socks5代理服务器, 并可以将请求记录保存到后台数据
 - path      (/foo/bar.php)
 - extension (php)
 - query     (id=1)
-- headers   (http rfc headers)
+- headers   (response headers)
 - content   (response contnet)
 - request_headers  (reqeust client headers)
 - request_content  (request data: liked post data)
