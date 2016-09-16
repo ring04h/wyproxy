@@ -132,6 +132,15 @@ $ python wyproxy.py -p 8080 -m socks5
 $ python wyproxy.py -p 8080 -m socks5 -d
 ```
 
+### 性能优化
+Open Max file option:    
+
+```bash
+$ echo ulimit -HSn 65536 >> /etc/rc.local
+$ echo ulimit -HSn 65536 >> ~/.bash_profile
+```
+
+
 ### 支持HTTPS, 需要配置客户端 SSL 证书
 #### iPhone 移动端, 使用Safari浏览器打开
 https://raw.githubusercontent.com/ring04h/wyproxy/master/ssl/mitmproxy-ca.pem    
