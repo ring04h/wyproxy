@@ -21,7 +21,6 @@ class WYProxy(flow.FlowMaster):
 
     def __init__(self, server, state):
         super(WYProxy, self).__init__(server, state)
-        self.connection = MysqlInterface.init()
 
     def run(self):
         try:
@@ -44,10 +43,9 @@ class WYProxy(flow.FlowMaster):
     def handle_response(self, f):
         f = flow.FlowMaster.handle_response(self, f)
         if f:
+            mysqldb_io = MysqlInterface()
             parser = ResponseParser(f)
-            result = parser.parser_data()
-            mysqldb_io = MysqlInterface(self.connection)
-            mysqldb_io.insert_result(result)
+            mysqldb_io.insert_result(parser.parser_data())
             f.reply()
         return f
 
