@@ -29,8 +29,6 @@ class WYProxy(flow.FlowMaster):
         except KeyboardInterrupt:
             self.shutdown()
             logging.info("Ctrl C - stopping wyproxy server")
-        finally:
-            self.connection.close()
 
     def handle_request(self, f):
         f = flow.FlowMaster.handle_request(self, f)
