@@ -2,6 +2,9 @@
 # encoding: utf-8
 
 """
+sudo networksetup -setautoproxystate Wi-Fi on
+sudo networksetup -setautoproxyurl Wi-Fi http://s5.wuyun.org/s5.pac
+
 disable_proxy()
 {
     networksetup -setsocksfirewallproxystate Wi-Fi off

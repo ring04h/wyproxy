@@ -108,6 +108,22 @@ $ service mysqld start
 $ mysql -uroot -p < wyproxy.sql
 ```
 
+### 性能优化
+Mysql配置调优, 有时候网页的content内容大小, 大于mysql默认允许插入的数据包大小, 所以需要修改Mysql的全局配置文件, 设置每次允许插入的数据大小为64M.   
+
+```bash
+$ vim /etc/my.cnf
+[mysqld] # 位置
+max_allowed_packet = 64M
+```
+   
+Open Max file option:    
+
+```bash
+$ echo ulimit -HSn 65536 >> /etc/rc.local
+$ echo ulimit -HSn 65536 >> ~/.bash_profile
+```
+
 ### 开发环境
 
 或者你可以配置和启动一个virtualenv环境来独立运行wyproxy.   
@@ -131,15 +147,6 @@ $ python wyproxy.py -p 8080 -m socks5
 ```bash
 $ python wyproxy.py -p 8080 -m socks5 -d
 ```
-
-### 性能优化
-Open Max file option:    
-
-```bash
-$ echo ulimit -HSn 65536 >> /etc/rc.local
-$ echo ulimit -HSn 65536 >> ~/.bash_profile
-```
-
 
 ### 支持HTTPS, 需要配置客户端 SSL 证书
 #### iPhone 移动端, 使用Safari浏览器打开
