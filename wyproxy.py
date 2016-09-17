@@ -12,8 +12,7 @@ from untils import ResponseParser, save_cnf, read_cnf
 from plugins import MysqlInterface
 
 logging.basicConfig(
-    level=logging.INFO,
-    # filename='/tmp/wyproxy.log',
+    level=logging.INFO, # filename='/tmp/wyproxy.log',
     format='%(asctime)s [%(levelname)s] %(message)s',
 )
 
@@ -41,8 +40,8 @@ class WYProxy(flow.FlowMaster):
     def handle_response(self, f):
         f = flow.FlowMaster.handle_response(self, f)
         if f:
-            mysqldb_io = MysqlInterface()
             parser = ResponseParser(f)
+            mysqldb_io = MysqlInterface()            
             mysqldb_io.insert_result(parser.parser_data())
             f.reply()
         return f
