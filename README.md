@@ -109,8 +109,9 @@ $ mysql -uroot -p < wyproxy.sql
 ```
 
 ### 性能优化
-Mysql配置调优, 有时候网页的content内容大小, 大于mysql默认允许插入的数据包大小, 所以需要修改Mysql的全局配置文件, 设置每次允许插入的数据大小为64M.   
-
+MYSQL配置调优, 有时候网页的content内容size大于1M,    
+需要修改MYSQL配置调优的全局配置文件max_allowed_packet, 允许插入的数据大小为64M.   
+   
 ```bash
 $ vim /etc/my.cnf
 [mysqld] # 位置
