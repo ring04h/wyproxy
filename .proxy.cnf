@@ -1,1 +1,0 @@
-{"daemon": true, "stop": false, "restart": false, "mode": "socks5", "save": false, "port": "19191", "pidfile": "/tmp/wyproxy.pid"}
