@@ -49,5 +49,12 @@ $ iptables-save > /etc/sysconfig/iptables
 $ service iptables restart
 ```
 
+## wyproxy代理服务器设置
+做NAT代理转发,必须启动代理服务器的模式为 transparent   
+   
+```shell
+$ python wyproxy.py -p 8080 -m transparent -d
+```
+
 ## 参考
 * https://docs.ucloud.cn/software/vpn/pptp4centos
