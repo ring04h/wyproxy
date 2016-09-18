@@ -6,39 +6,43 @@
 # rpm -ivh http://static.ucloud.cn/pptpd-1.3.4-2.el6.x86_64.rpm
 ```
 注：32位请安装i686版本，将上面链接中的“x86_64”改为“i686”即可，请根据自己的OS安装相应的版本。   
-   
-编辑pptp.conf，在最后加入以下两行代码
-   
-```bash
-# vim /etc/pptpd.conf
+
+```shell   
+# 编辑pptp.conf，在最后加入以下两行代码
+
+$ vim /etc/pptpd.conf
 localip 10.8.0.1   
 remoteip 10.8.0.10-100   
-编辑options.pptpd，在最后加入以下两行代码   
+
+# 编辑options.pptpd，在最后加入以下两行代码   
    
-# vim /etc/ppp/options.pptpd
+$ vim /etc/ppp/options.pptpd
 ms-dns 8.8.8.8
 ms-dns 8.8.4.4
-编辑chap-secrets，account为pptp登录帐号，password为登录密码，其他默认
+
+# 编辑chap-secrets，account为pptp登录帐号，password为登录密码，其他默认
    
-# vim /etc/ppp/chap-secrets
+$ vim /etc/ppp/chap-secrets
 # client        server      secret            IP addresses
   account       pptpd       password          *
-编辑sysctl.conf，开启网络转发功能
 
-# vim /etc/sysctl.conf
+# 编辑sysctl.conf，开启网络转发功能
+
+$ vim /etc/sysctl.conf
 net.ipv4.ip_forward = 1
 # sysctl -p
-配置NAT
 
-# iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 
-# iptables-save > /etc/sysconfig/iptables
-启动PPTP服务
+# 配置NAT
+$ iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 
+$ iptables-save > /etc/sysconfig/iptables
 
-# service pptpd start
-设置为开机启动
+# 启动PPTP服务
+$ service pptpd start
 
-# chkconfig pptpd on
-# chkconfig iptables on
+# 设置为开机启动
+
+$ chkconfig pptpd on
+$ chkconfig iptables on
 ```
 
 ## 设置iptables防火墙转发   
