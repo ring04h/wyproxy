@@ -43,9 +43,10 @@ $ chkconfig iptables on
 ## 设置iptables防火墙转发   
    
 ```bash
-$ iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
 $ iptables -t nat -A PREROUTING -s 10.8.0.0/24 -i ppp+ -p tcp -m multiport --dports 80,81,82,83,88,8000,8001,8002,8080,8081,8090 -j DNAT --to-destination 10.8.0.1:8080
 $ iptables -t nat -A PREROUTING -s 10.8.0.0/24 -i ppp+ -p tcp -m multiport --dports 443,8443 -j DNAT --to-destination 10.8.0.1:8080
+$ iptables-save > /etc/sysconfig/iptables
+$ service iptables restart
 ```
 
 ## 参考
