@@ -12,7 +12,7 @@ def wyproxy_request_handle(flow):
     # flow.request.anticomp()
 
     # change the request headers['Host']
-    # flow.request.headers['Host'] = 'wap.10086.cn'
+    flow.request.headers['X-Online-Host'] = 'wap.gd.10086.cn'
 
 def wyproxy_response_handle(flow):
     """wyproxy request task is over"""
