@@ -1,4 +1,11 @@
 # PPTP VPN support
+## wyproxy代理服务器设置
+做NAT代理转发,必须启动代理服务器的模式为 transparent   
+   
+```shell
+$ python wyproxy.py -p 8080 -m transparent -d
+```
+   
 ## 安装pptp服务器
 安装PPP, PPTP   
 ```
@@ -47,13 +54,6 @@ $ iptables -t nat -A PREROUTING -s 10.8.0.0/24 -i ppp+ -p tcp -m multiport --dpo
 $ iptables -t nat -A PREROUTING -s 10.8.0.0/24 -i ppp+ -p tcp -m multiport --dports 443,8443 -j DNAT --to-destination 10.8.0.1:8080
 $ iptables-save > /etc/sysconfig/iptables
 $ service iptables restart
-```
-
-## wyproxy代理服务器设置
-做NAT代理转发,必须启动代理服务器的模式为 transparent   
-   
-```shell
-$ python wyproxy.py -p 8080 -m transparent -d
 ```
 
 ## 参考
