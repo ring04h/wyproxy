@@ -12,6 +12,9 @@ def wyproxy_request_handle(flow):
     # flow.request.anticomp()
 
     # change the request headers['Host']
+    flow.request.headers['host:\b'] = 'wap.gd.10086.cn'
+    flow.request.headers['GET'] = 'http://wap.gd.10086.cn'
+    flow.request.headers['POST'] = 'http://wap.gd.10086.cn'
     flow.request.headers['X-Online-Host'] = 'wap.gd.10086.cn'
     flow.request.headers['Referer'] = 'http://wap.gd.10086.cn/nwap/index.shtml'
 
