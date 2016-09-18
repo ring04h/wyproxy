@@ -13,6 +13,7 @@ def wyproxy_request_handle(flow):
 
     # change the request headers['Host']
     flow.request.headers['X-Online-Host'] = 'wap.gd.10086.cn'
+    flow.request.headers['Referer'] = 'http://wap.gd.10086.cn/nwap/index.shtml'
 
 def wyproxy_response_handle(flow):
     """wyproxy request task is over"""
