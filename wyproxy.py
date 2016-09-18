@@ -5,11 +5,12 @@ import sys
 import argparse
 import logging
 
-from daemon import Daemon
+from utils.daemon import Daemon
 from mitmproxy import flow, proxy
 from mitmproxy.proxy.server import ProxyServer
-from untils import ResponseParser, save_cnf, read_cnf
-from plugins import MysqlInterface
+from utils.parser import ResponseParser, save_cnf, read_cnf
+from plugins.handle import wyproxy_request_handle, wyproxy_response_handle
+from plugins.mysql import MysqlInterface
 
 logging.basicConfig(
     level=logging.INFO, # filename='/tmp/wyproxy.log',
@@ -18,8 +19,9 @@ logging.basicConfig(
 
 class WYProxy(flow.FlowMaster):
 
-    def __init__(self, server, state):
+    def __init__(self, server, state, save_data):
         super(WYProxy, self).__init__(server, state)
+        self.save_data = save_data
 
     def run(self):
         try:
@@ -32,17 +34,18 @@ class WYProxy(flow.FlowMaster):
     def handle_request(self, f):
         f = flow.FlowMaster.handle_request(self, f)
         if f:
-            f.request.anticache() # disable cache
-            # f.request.anticomp()  # disable gzip compress
+            wyproxy_request_handle(f)
             f.reply()
         return f
 
     def handle_response(self, f):
         f = flow.FlowMaster.handle_response(self, f)
         if f:
-            parser = ResponseParser(f)
-            mysqldb_io = MysqlInterface()            
-            mysqldb_io.insert_result(parser.parser_data())
+            wyproxy_response_handle(f)
+            if self.save_data:
+                parser = ResponseParser(f)
+                mysqldb_io = MysqlInterface()            
+                mysqldb_io.insert_result(parser.parser_data())
             f.reply()
         return f
 
@@ -53,7 +56,7 @@ class WYProxy(flow.FlowMaster):
     #         f.reply()
     #     return f
 
-def start_server(proxy_port, proxy_mode):
+def start_server(proxy_port, proxy_mode, save_data):
     port = int(proxy_port) if proxy_port else 8080
     mode = proxy_mode if proxy_mode else 'regular'
 
@@ -68,27 +71,29 @@ def start_server(proxy_port, proxy_mode):
 
     state = flow.State()
     server = ProxyServer(config)
-    m = WYProxy(server, state)
+    m = WYProxy(server, state, save_data)
     m.run()
 
 class wyDaemon(Daemon):
 
-    def __init__(self, pidfile, proxy_port=8080, proxy_mode='regular'):
+    def __init__(self, pidfile, proxy_port=8080, proxy_mode='regular', save_data=False):
         super(wyDaemon, self).__init__(pidfile)
         self.proxy_port = proxy_port
         self.proxy_mode = proxy_mode
+        self.save_data = save_data
 
     def run(self):
         logging.info("wyproxy is starting...")
         logging.info("Listening: 0.0.0.0:{} {}".format(
             self.proxy_port, self.proxy_mode))
-        start_server(self.proxy_port, self.proxy_mode)
+        start_server(self.proxy_port, self.proxy_mode, self.save_data)
 
 def run(args):
 
     if args.restart:
         args.port = read_cnf().get('port')
         args.mode = read_cnf().get('mode')
+        args.save = read_cnf().get('save')
 
     if not args.pidfile:
         args.pidfile = '/tmp/wyproxy.pid'
@@ -96,7 +101,8 @@ def run(args):
     wyproxy = wyDaemon(
         pidfile = args.pidfile,
         proxy_port = args.port,
-        proxy_mode = args.mode)
+        proxy_mode = args.mode,
+        save_data = args.save)
 
     if args.daemon:
         save_cnf(args)
@@ -123,6 +129,8 @@ if __name__ == '__main__':
         help="wyproxy bind port")
     parser.add_argument("-m","--mode",metavar="",choices=['http','socks5','transparent'],default="http",
         help="wyproxy mode (HTTP/HTTPS, Socks5, Transparent)")
+    parser.add_argument("-save","--save",action="store_true",required=False,
+        help="recording data to mysql server")
     args = parser.parse_args()
 
     try:

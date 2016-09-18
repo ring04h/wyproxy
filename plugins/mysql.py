@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+from __future__ import absolute_import
+
 from config import mysqldb_conn
 
 import pymysql.cursors
@@ -99,14 +101,4 @@ class MysqlInterface(object):
 
         finally:
             self.connection.close()
-
-
-
-
-
-
-
-
-
-
 

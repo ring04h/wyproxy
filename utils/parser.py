@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+from __future__ import absolute_import
+
 import json
 import mimetypes
 from config import media_types, static_files, static_ext, save_content
@@ -143,14 +145,3 @@ class ResponseParser(object):
         for key, value in header.iteritems():
             headers[key] = value
         return headers
-
-
-
-
-
-
-
-
-
-
-
