@@ -18,7 +18,7 @@ HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台
 
 ```bash
 $ python wyproxy.py -h
-usage: wyproxy.py [-h] [-d] [-stop] [-restart] [-pid] [-p] [-m] [-save]
+usage: wyproxy.py [-h] [-d] [-stop] [-restart] [-pid] [-p] [-m] [-us]
 
 wyproxy v 1.0 ( Proxying And Recording HTTP/HTTPs and Socks5)
 
@@ -30,7 +30,7 @@ optional arguments:
   -pid , --pidfile     wyproxy daemond pidfile name
   -p , --port          wyproxy bind port
   -m , --mode          wyproxy mode (HTTP/HTTPS, Socks5, Transparent)
-  -save, --save        recording data to mysql server
+  -us, --unsave        Do not save records to MySQL server
 
 ```
 
@@ -138,18 +138,18 @@ $ source bin/activate
 ```
 
 ### 启动wyproxy
-> 如果想要将代理记录保存到数据库, 必须指定 -save 参数
+> 如果不想将代理记录保存到数据库, 必须指定 -us 或者 --unsave 参数
    
 普通方式启动   
 
 ```bash
-$ python wyproxy.py -p 8080 -m socks5 -save
+$ python wyproxy.py -p 8080 -m socks5 --unsave
 ```   
 
 守护进程方式启动
 
 ```bash
-$ python wyproxy.py -p 8080 -m socks5 -save -d
+$ python wyproxy.py -p 8080 -m socks5 --unsave -d
 ```
 
 ### 支持HTTPS, 需要配置客户端 SSL 证书
