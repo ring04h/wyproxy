@@ -49,17 +49,15 @@ class ResponseParser(object):
         result['date_end'] = self.flow.response.timestamp_end
         result['content_length'] = self.get_content_length()
         result['static_resource'] = self.ispass
+        result['header'] = self.get_header()
+        result['request_header'] = self.get_request_header()
         
         # request resource is media file & static file, so pass
         if self.ispass:
-            result['header'] = None
-            result['request_header'] = None
             result['content'] = None
             result['request_content'] = None
             return result
 
-        result['header'] = self.get_header()
-        result['request_header'] = self.get_request_header()
         result['content'] = self.get_content() if save_content else ''
         result['request_content'] = self.get_request_content() if save_content else ''
         return result
