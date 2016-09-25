@@ -40,9 +40,9 @@
     <li><a href="https://github.com/ring04h/wyproxy" target="_blank">帮助</a></li>
   </ul>
 
-<form class="navbar-form navbar-right" action='/txt/?k1='>            
+<form class="navbar-form navbar-right" action='/q?'>         
 <div class="form-group">
-  <input type="text" placeholder="Host='qq.com' and Port='80,443' and Status='200'" name='k1' class="form-control" style="width: 320px">
+<input type="text" placeholder="host:qq.com port:80,443 status:200" name='s' class="form-control" style="width: 320px">
 </div>
 <button type="submit" class="btn btn-default">搜索</button>
 </form>
@@ -71,15 +71,15 @@
 
 {% for record in records %}
 <tr>
-<td><a href="/r?id={{record.id}}">#{{record.id}}</a></td>
+<td><a href="/r?id={{record.id}}" target="_blank">#{{record.id}}</a></td>
 <td>{{record.host | truncate(40, True)}}:{{record.port}}</td>
 <td>{{record.method}}</td>
 <td>{{record.path | truncate(40, True)}}</td>
-<td><a href="#">{{record.content_type}}</a></td>
+<td><a href="/q?s=content_type:{{record.content_type}}">{{record.content_type}}</a></td>
 <td>{{record.status_code}}</td>
 <td>{{record.date_start}}</td>
 <td>
-<a class="btn btn-default btn-xs" href="/r?id={{record.id}}" role="button">查看回放</a>
+<a class="btn btn-default btn-xs" href="/r?id={{record.id}}" target="_blank" role="button">查看回放</a>
 <a class="btn btn-danger btn-xs" href="/del?id={{record.id}}" role="button">删除</a></td>
     </tr>
 {% endfor %}
@@ -96,16 +96,40 @@
 <li class="disabled"><a><span aria-hidden="true">&larr;</span> 上一页</a></li>
 <li class="disabled"><a>首页</a></li>
 {% else %}
-<li><a href="/?page={{page-1}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-<li><a href="/?page=1">首页</a></li>
+<li>
+{% if search %}
+<a href="/q?s={{search}}&p={{page-1}}">
+{% else %}
+<a href="/?p={{page-1}}">
+{% endif %}
+<span aria-hidden="true">&larr;</span> 上一页</a></li>
+<li>
+{% if search %}
+<a href="/q?s={{search}}&p=1">
+{% else %}
+<a href="/?p=1">
+{% endif %}
+首页</a></li>
 {% endif %}
 
 {% if page == max_page %}
 <li class="disabled"><a>尾页</a></li><li>
 <li class="disabled"><a>下一页 <span aria-hidden="true">&rarr;</span></a></li>
 {% else %}
-<li><a href="/?page={{max_page}}">尾页</a></li>
-<li><a href="/?page={{page+1}}"> 下一页 <span aria-hidden="true">&rarr;</span></a></li>
+<li>
+{% if search %}
+<a href="/q?s={{search}}&p={{max_page}}">
+{% else %}
+<a href="/?p={{max_page}}">
+{% endif %}
+尾页</a></li>
+<li>
+{% if search %}
+<a href="/q?s={{search}}&p={{page+1}}">
+{% else %}
+<a href="/?p={{page+1}}">
+{% endif %}
+ 下一页 <span aria-hidden="true">&rarr;</span></a></li>
 {% endif %}
 
   </ul>

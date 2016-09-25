@@ -1,5 +1,8 @@
 # encoding: utf-8
 
+# page show record size
+show_cnt = 10
+
 # msyql dababase connection info
 mysqldb_conn = {
     'host' : 'localhost',
