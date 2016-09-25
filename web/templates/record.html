@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>回放请求</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+  </head>
+
+</script>
+
+  <body>
+
+<!-- Static navbar -->
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">WYPROXY Dashboard</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/settings">系统设置</a></li>
+            <li><a href="https://github.com/ring04h/wyproxy" target="_blank">帮助</a></li>
+          </ul>
+
+<form class="navbar-form navbar-right" action='/txt/?k1='>            
+<div class="form-group">
+  <input type="text" placeholder="Host='qq.com' and Port='80,443' and Status='200'" name='k1' class="form-control" style="width: 360px">
+</div>
+<button type="submit" class="btn btn-default">搜索</button>
+</form>
+
+        </div>
+      </div>
+    </nav>
+
+
+<div class="container">
+
+  <div>
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Genral Infomation</a></li>
+      <li role="presentation"><a href="#request" role="tab" id="request-tab" data-toggle="tab" aria-controls="request">Request Headers</a></li>
+      <li role="presentation"><a href="#response" role="tab" id="response-tab" data-toggle="tab" aria-controls="response">Response Headers</a></li>
+    </ul>
+
+
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
+        
+
+<br>
+
+<form class="form-horizontal" role="form">
+
+<div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">URL</label>
+    <div class="col-sm-8">
+      <textarea class="form-control" rows="5">{{record.url}}</textarea>
+    </div>
+  </div>
+
+<div class="form-group">
+
+<label class="col-sm-1 control-label">Host</label>
+<div class="col-sm-4">
+  <input type="text" class="form-control" value="{{record.host}}:{{record.port}}">
+</div>
+
+<label class="col-sm-1 control-label">Method</label>
+<div class="col-sm-2">
+  <input type="text" class="form-control" value="{{record.method}}">
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label class="col-sm-1 control-label">Path</label>
+<div class="col-sm-4">
+  <input type="text" class="form-control" value="{{record.path}}">
+</div>
+
+<label class="col-sm-1 control-label">Status</label>
+<div class="col-sm-2">
+  <input type="text" class="form-control" value="{{record.status_code}}">
+</div>
+
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-1 control-label">Type</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="{{record.content_type}}">
+    </div>
+
+    <label class="col-sm-1 control-label">Datetime</label>
+    <div class="col-sm-3">
+      <input type="datetime" class="form-control" value="{{record.date_start}}">
+    </div>
+
+  </div>
+
+
+<div class="form-group">
+<div class="col-sm-offset-1 col-sm-10">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
+回放请求</button>
+</div></div>
+</form>
+
+      </div>
+
+<div role="tabpanel" class="tab-pane fade" id="request" aria-labelledBy="request-tab">
+
+<form class="form-horizontal" role="form">
+<br>
+  <div class="form-group">
+    <label class="col-sm-1 control-label">HTTP Header</label>
+    <div class="col-sm-8">
+{% set request_headers = record.request_header | json_dumps %}
+<textarea class="form-control" rows="10">{% if request_headers %}
+{% for key,value in request_headers.iteritems() %}{{key}}: {{value}}
+{% endfor %}{% endif %}</textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-1 control-label">Query String</label>
+    <div class="col-sm-8">
+<textarea class="form-control" rows="3">
+{% if record.request_content %}{{record.request_content|to_unicode}}{% endif %}
+</textarea>
+    </div>
+  </div>
+</form>
+
+      </div>
+
+<div role="tabpanel" class="tab-pane fade" id="response" aria-labelledBy="response-tab">
+<br>
+<form class="form-horizontal" role="form">
+
+<div class="form-group">
+<label class="col-sm-1 control-label">Response Header</label>
+<div class="col-sm-8">
+{% set headers = record.header | json_dumps %}
+<textarea class="form-control" rows="8">{% if headers %}
+{% for key,value in headers.iteritems() %}{{key}}: {{value}}
+{% endfor %}{% endif %}</textarea>
+    </div>
+  </div>
+
+<div class="form-group">
+    <label class="col-sm-1 control-label">Response Content</label>
+    <div class="col-sm-8">
+<textarea class="form-control" rows="12">
+{% if record.content %}{{record.content|to_unicode}}{% endif %}</textarea>
+</div>
+  </div>
+
+</form>
+</div>
+
+    </div>
+  </div><!-- /example -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        HTTP Request Editor
+      </div>
+
+<form class="form-horizontal" method="POST" role="form">
+
+<div class="modal-body">
+<div class="form-group">
+<div class="col-sm-2">
+<input type="text" class="form-control" value="{{record.method}}">
+</div>
+
+<div class="col-sm-8">
+  <input type="text" class="form-control" value="{{record.url}}">
+</div>
+
+<div class="col-sm-2">
+  <input type="text" class="form-control" value="HTTP/1.1">
+</div>
+
+</div>
+
+<div class="form-group">
+<div class="col-sm-12">
+{% set request_headers = record.request_header | json_dumps %}
+<textarea class="form-control" id="message-text" rows="15" name='msg'>{% if request_headers %}
+{% for key,value in request_headers.iteritems() %}{{key}}: {{value}}
+{% endfor %}{% endif %}</textarea>
+</div></div>
+
+</div>
+
+<div class="modal-footer">
+<div class="media-left">
+<button type="submit" class="btn btn-default">回放请求</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+</div>
+</div>
+      </form>
+</div>
+  </div>
+</div>
+
+
+<hr>
+
+<footer class="footer">
+<p>&copy; 贝塔科技 2016</p>
+</footer>
+
+</div> <!-- /container -->
+</body>
+</html>

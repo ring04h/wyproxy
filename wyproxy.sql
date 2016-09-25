@@ -14,11 +14,11 @@
  Date: 09/13/2016 12:22:26 PM
 */
 
-CREATE DATABASE IF NOT EXISTS `wyproxy` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `wyproxy` DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_general_ci;
 
 USE `wyproxy`;
 
-SET NAMES utf8;
+SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -45,6 +45,6 @@ CREATE TABLE `capture` (
   `extension` char(32) DEFAULT NULL,
   `port` char(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 SET FOREIGN_KEY_CHECKS = 1;

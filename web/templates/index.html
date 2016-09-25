@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Dashboard</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <!-- <link href="/static/css/bootstrap-theme.css" rel="stylesheet"> -->
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+  </head>
+
+</script>
+
+  <body>
+
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+<div class="container">
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand" href="/">WYPROXY Dashboard</a>
+</div>
+
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="/settings">系统设置</a></li>
+    <li><a href="https://github.com/ring04h/wyproxy" target="_blank">帮助</a></li>
+  </ul>
+
+<form class="navbar-form navbar-right" action='/txt/?k1='>            
+<div class="form-group">
+  <input type="text" placeholder="Host='qq.com' and Port='80,443' and Status='200'" name='k1' class="form-control" style="width: 360px">
+</div>
+<button type="submit" class="btn btn-default">搜索</button>
+</form>
+
+</div>
+</div>
+</nav>
+
+
+<div class="container">
+
+<table class="table table-striped" cellspacing="0" width="100%">
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Host</th>
+    <th>Method</th>
+    <th>Path</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Datetime</th>
+    <th>Operation</th>
+</tr>
+</thead>
+    <tbody>
+
+{% for record in records %}
+<tr>
+<td><a href="/r?id={{record.id}}">#{{record.id}}</a></td>
+<td>{{record.host | truncate(40, True)}}:{{record.port}}</td>
+<td>{{record.method}}</td>
+<td>{{record.path | truncate(40, True)}}</td>
+<td><a href="#">{{record.content_type}}</a></td>
+<td>{{record.status_code}}</td>
+<td>{{record.date_start}}</td>
+<td>
+<a class="btn btn-default btn-xs" href="#" role="button">查看回放</a>
+<a class="btn btn-danger btn-xs" href="#" role="button">删除</a></td>
+    </tr>
+{% endfor %}
+
+    </tbody>
+</table>
+
+
+<nav>
+  <ul class="pager">
+
+
+{% if page <= 1 %}
+<li class="disabled"><a><span aria-hidden="true">&larr;</span> 上一页</a></li>
+<li class="disabled"><a>首页</a></li>
+{% else %}
+<li><a href="/?page={{page-1}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+<li><a href="/?page=1">首页</a></li>
+{% endif %}
+
+{% if page == max_page %}
+<li class="disabled"><a>尾页</a></li><li>
+<li class="disabled"><a>下一页 <span aria-hidden="true">&rarr;</span></a></li>
+{% else %}
+<li><a href="/?page={{max_page}}">尾页</a></li>
+<li><a href="/?page={{page+1}}"> 下一页 <span aria-hidden="true">&rarr;</span></a></li>
+{% endif %}
+
+  </ul>
+</nav>
+
+
+<footer class="footer">
+<p>&copy; 贝塔科技 2016</p>
+</footer>
+
+</div> <!-- /container -->
+</body>
+</html>

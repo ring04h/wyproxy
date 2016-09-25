@@ -64,15 +64,18 @@ class MysqlInterface(object):
                 date_end = timestamp_datetime(result.get('date_end')),
                 date_start = timestamp_datetime(result.get('date_start')),
                 port = result.get('port'),
+
                 content = result.get('content'),
+                header = json.dumps(result.get('header'))
+
                 host = result.get('host'),
                 content_type = result.get('content_type'),
+                
                 path = result.get('path'),
                 scheme = result.get('scheme'),
                 method = result.get('method'),
-                request_content = result.get('request_content'),
 
-                header = json.dumps(result.get('header'))
+                request_content = result.get('request_content'),
                 request_header = json.dumps(result.get('request_header'))
 
                 cursor.execute(sql, (
@@ -92,7 +95,7 @@ class MysqlInterface(object):
                     scheme,
                     method,
                     request_content,
-                    request_header,)
+                    request_header)
                 )
 
             # connection is not autocommit by default. So you must commit to save
