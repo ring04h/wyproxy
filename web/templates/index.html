@@ -79,8 +79,8 @@
 <td>{{record.status_code}}</td>
 <td>{{record.date_start}}</td>
 <td>
-<a class="btn btn-default btn-xs" href="#" role="button">查看回放</a>
-<a class="btn btn-danger btn-xs" href="#" role="button">删除</a></td>
+<a class="btn btn-default btn-xs" href="/r?id={{record.id}}" role="button">查看回放</a>
+<a class="btn btn-danger btn-xs" href="/del?id={{record.id}}" role="button">删除</a></td>
     </tr>
 {% endfor %}
 

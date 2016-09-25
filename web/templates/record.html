@@ -123,8 +123,10 @@
 
 <div class="form-group">
 <div class="col-sm-offset-1 col-sm-10">
-<button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#recordModal">
 回放请求</button>
+&nbsp;
+<a class="btn btn-danger" href="/del?id={{record.id}}" role="button">删除记录</a>
 </div></div>
 </form>
 
@@ -147,7 +149,7 @@
   <div class="form-group">
     <label class="col-sm-1 control-label">Query String</label>
     <div class="col-sm-8">
-<textarea class="form-control" rows="3">
+<textarea class="form-control" rows="5">
 {% if record.request_content %}{{record.request_content|to_unicode}}{% endif %}
 </textarea>
     </div>
@@ -184,7 +186,25 @@
     </div>
   </div><!-- /example -->
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+<!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" style="margin-top:20%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        操作确认
+      </div>
+      <form action="/del" method="GET">
+      <div class="modal-body">
+        <input type="hidden" value="{{record.id}}" name="id">
+        <button type="submit" class="btn btn-default">确认删除</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+ -->
+
+<div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModal" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">

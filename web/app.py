@@ -54,17 +54,21 @@ def show_record():
     dbconn = connect_db()
     cond = {'id':rid}
     record = dbconn.fetch_rows(table='capture',condition=cond, fetchone=True)
-    return render_template('record.html', record=record)
+    if record:
+        return render_template('record.html', record=record)
+    else:
+        return redirect('/')
 
-@app.route("/init")
-def db_init():
-    init_db()
-    a = User('admin', 'admin@localhost')
-    u = User('user', 'user@localhost')
-    db_session.add(a)
-    db_session.add(u)
-    db_session.commit()
-    return "db init success..."
+@app.route('/del', methods=['GET'])
+def delete_record():
+    rid = request.args.get('id', 0, type=int)
+    referer = request.headers.get('Referer')
+    if not rid:
+        return redirect('/')
+    dbconn = connect_db()
+    cond = {'id':rid}
+    dbconn.delete(table='capture',condition=cond)
+    return redirect(referer) if referer else redirect('/')
 
 @app.route('/n')
 def add_numbers():
@@ -113,4 +117,4 @@ def to_unicode(content):
 if __name__ == "__main__":
     app.run(
         host='0.0.0.0',
-        debug=False)
+        debug=True)
