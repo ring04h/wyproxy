@@ -73,7 +73,7 @@ def delete_record():
 def add_numbers():
     search = request.args.get('s')
     if not search or ':' not in search:
-        return 'False'
+        return redirect('/')
     page = request.args.get('p', 1, type=int)
     page = page if page > 0 else 1
 
@@ -84,6 +84,8 @@ def add_numbers():
     params = {}
     for param in search_str:
         name, value = param.split(':')
+        if name not in ['host', 'port', 'status_code','method', 'type', 'content_type', 'scheme', 'extension']:
+            return redirect('/')
         params[name] = value
     
     condition = comma = ''
