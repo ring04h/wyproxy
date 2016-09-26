@@ -153,7 +153,10 @@ def json_dumps(dict):
 def to_unicode(content):
     from requests.packages import chardet
     encode_name = chardet.detect(content).get('encoding')
-    return unicode(content, encode_name) if encode_name else ''
+    if encode_name:
+        return unicode(content, encode_name)
+    else:
+        return unicode(content, 'utf8')
 
 if __name__ == "__main__":
     app.run(
