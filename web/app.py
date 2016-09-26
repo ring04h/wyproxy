@@ -5,6 +5,7 @@ sys.path.append("..")
 
 from flask import Flask, request, Response, jsonify, render_template, g, redirect
 from database import MYSQL
+from pymysql import escape_string
 from config import mysqldb_conn, show_cnt
 
 app = Flask(__name__)
@@ -72,7 +73,7 @@ def delete_record():
 @app.route('/q')
 def add_numbers():
     search = request.args.get('s')
-    if not search or ':' not in search:
+    if not search or ':' not in search or "'" in search:
         return redirect('/')
     page = request.args.get('p', 1, type=int)
     page = page if page > 0 else 1
@@ -92,11 +93,12 @@ def add_numbers():
     glue = ' AND '
     for key, value in params.iteritems():
         if ',' in value and key in ['port','status_code','method','type']:
-            condition +=  "{}`{}` in ({})".format(comma, key, value)
+            values = [escape_string(x) for x in value.split(',')]
+            condition +=  "{}`{}` in ('{}')".format(comma, key, "', '".join(values))
         elif key in ['host']:
-            condition +=  "{}`{}` like '%{}'".format(comma, key, value)
+            condition +=  "{}`{}` like '%{}'".format(comma, key, escape_string(value))
         else:
-            condition +=  "{}`{}` = '{}'".format(comma, key, value)
+            condition +=  "{}`{}` = '{}'".format(comma, key, escape_string(value))
         comma = glue
 
     dbconn = connect_db()
@@ -156,4 +158,4 @@ def to_unicode(content):
 if __name__ == "__main__":
     app.run(
         host='0.0.0.0',
-        debug=False)
+        debug=True)

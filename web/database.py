@@ -118,7 +118,7 @@ class MYSQL:
                 limits=limits)
 
             cursor.execute(sql)
-            
+
             if fetchone:
                 return cursor.fetchone()
             else:
@@ -142,7 +142,7 @@ class MYSQL:
     def join_field_value(self, data, glue = ', '):
         sql = comma = ''
         for key, value in data.iteritems():
-            sql +=  "{}`{}` = '{}'".format(comma, key, value)
+            sql +=  "{}`{}` = '{}'".format(comma, key, pymysql.escape_string(value))
             comma = glue
         return sql
 
