@@ -142,7 +142,9 @@ class MYSQL:
     def join_field_value(self, data, glue = ', '):
         sql = comma = ''
         for key, value in data.iteritems():
-            sql +=  "{}`{}` = '{}'".format(comma, key, pymysql.escape_string(value))
+            if isinstance(value, str):
+                value = pymysql.escape_string(value)
+            sql +=  "{}`{}` = '{}'".format(comma, key, value)
             comma = glue
         return sql
 
