@@ -7,6 +7,9 @@ HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台
 
 同时支持流量handle回放数据功能,    
 在HTTP Header中插入 移动/联通/电信 营业厅的免流量域名头, 实现免流量代理上网。   
+   
+演示服务器：http://s5.wuyun.org:5000   
+代理服务器：s5.wuyun.org , socks5: 8080   
     
 支持场景    
 - iPhone App
