@@ -1,5 +1,5 @@
 # wyproxy
-Proxying And Recording HTTP/HTTPs and Socks5, Save To Mysql Database.     
+Proxying And Recording HTTP/HTTPs/Socks5 proxy flow, Save To Mysql Database.     
 https://github.com/ring04h/wyproxy2 (Golang high performance version)   
 
 HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台数据库.   
