@@ -1,2 +1,2 @@
-mitmproxy
+mitmproxy==0.17
 pymysql
