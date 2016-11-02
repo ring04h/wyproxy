@@ -3,6 +3,9 @@
 import sys
 sys.path.append("..")
 
+# from gevent import monkey
+# monkey.patch_all()
+
 from flask import Flask, request, Response, jsonify, render_template, g, redirect
 from database import MYSQL
 from pymysql import escape_string
@@ -158,4 +161,5 @@ def to_unicode(content):
 if __name__ == "__main__":
     app.run(
         host='0.0.0.0',
-        debug=False)
+        debug=False,
+        threaded=True)
