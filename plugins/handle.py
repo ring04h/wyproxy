@@ -9,7 +9,7 @@ def wyproxy_request_handle(flow):
     flow.request.anticache()
 
     # disable gzip compress
-    # flow.request.anticomp()
+    flow.request.anticomp()
 
     # change the request headers['Host']
     # flow.request.headers['X-Online-Host'] = 'wap.gd.10086.cn'
