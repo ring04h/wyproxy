@@ -47,6 +47,10 @@ class WYProxy(flow.FlowMaster):
                 mysqldb_io = MysqlInterface()            
                 mysqldb_io.insert_result(parser.parser_data())
             f.reply()
+            while 1:
+                if f in self.state.flows:
+                    self.state.delete_flow(f)
+                    break
         return f
 
     # def handle_error(self, f):
