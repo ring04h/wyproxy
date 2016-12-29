@@ -120,7 +120,7 @@ class ResponseParser(object):
             if not split_ext or len(split_ext) == 1:
                 return ''
             else:
-                return split_ext[-1:][0]
+                return split_ext[-1:][0][:32]
 
     def get_scheme(self):
         return self.flow.request.scheme
