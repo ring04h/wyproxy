@@ -97,13 +97,13 @@ class ResponseParser(object):
         return self.parser_header(self.flow.response.headers)
 
     def get_content(self):
-        return self.flow.response.get_decoded_content()
+        return self.flow.response.content
 
     def get_request_header(self):
         return self.parser_header(self.flow.request.headers)
 
     def get_request_content(self):
-        return self.flow.request.get_decoded_content()
+        return self.flow.request.content
 
     def get_url(self):
         return self.flow.request.url

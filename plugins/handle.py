@@ -5,12 +5,9 @@
 def wyproxy_request_handle(flow):
     """wyproxy send data to server before processing"""
 
-    # disable cache
-    flow.request.anticache()
-
-    # disable gzip compress
-    # flow.request.anticomp()
-
+    flow.request.anticache()  # disable cache
+    flow.request.anticomp()   # disable gzip compress
+    
     # change the request headers['Host']
     # flow.request.headers['X-Online-Host'] = 'wap.gd.10086.cn'
 
