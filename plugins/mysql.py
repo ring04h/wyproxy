@@ -102,6 +102,9 @@ class MysqlInterface(object):
             # your changes.
             self.connection.commit()
 
+        except Exception as e:
+            logging.error(str(e))
         finally:
-            self.connection.close()
+            if self.connection:
+                self.connection.close()
 
