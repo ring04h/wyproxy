@@ -9,8 +9,8 @@ from utils.daemon import Daemon
 from mitmproxy import flow, proxy, controller, options
 from mitmproxy.proxy.server import ProxyServer
 from utils.parser import ResponseParser, save_cnf, read_cnf
-from plugins.handle import wyproxy_request_handle, wyproxy_response_handle
-from plugins.mysql import MysqlInterface
+from utils.handle import wyproxy_request_handle, wyproxy_response_handle
+from utils.mysql import MysqlInterface
 
 logging.basicConfig(
     level=logging.INFO, # filename='/tmp/wyproxy.log',
@@ -40,7 +40,7 @@ class WYProxy(flow.FlowMaster):
         wyproxy_response_handle(f)
         if not self.unsave_data:
             parser = ResponseParser(f)
-            mysqldb_io = MysqlInterface()            
+            mysqldb_io = MysqlInterface()           
             mysqldb_io.insert_result(parser.parser_data())
         
         # memory overfull bug
