@@ -10,7 +10,7 @@ HTTP/HTTPS, Socks5代理服务器, 并可以将网络请求记录保存到后台
 在HTTP Header中插入 移动/联通/电信 营业厅的免流量域名头, 实现免流量代理上网。   
    
 演示服务器：http://s5.wuyun.org:5000   
-    
+
 支持场景    
 - iPhone App
 - iPad App
@@ -39,7 +39,7 @@ optional arguments:
 
 记录字段如下   
 
-![github](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/captrue.png "github")   
+![github](https://raw.githubusercontent.com/ring04h/wyproxy/master/doc/screenshot/captrue.png "github")   
 
 - method    (HTTP/HTTPS/OPTIONS)
 - scheme    (http/https/ftp)
@@ -162,11 +162,11 @@ https://raw.githubusercontent.com/ring04h/wyproxy/master/ssl/mitmproxy-ca.pem
 
 安装界面    
     
-![install_pem](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/install_pem.png)
+![install_pem](https://raw.githubusercontent.com/ring04h/wyproxy/master/doc/screenshot/install_pem.png)
 
 成功后的界面   
 
-![install_pem_succ](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/install_pem_succ.png)   
+![install_pem_succ](https://raw.githubusercontent.com/ring04h/wyproxy/master/doc/screenshot/install_pem_succ.png)   
 
 #### Mac OS X 安装配置 SSL 证书 并信任
 ```bash
@@ -175,10 +175,10 @@ $ wget https://raw.githubusercontent.com/ring04h/wyproxy/master/ssl/mitmproxy-ca
 在Finder中双击运行mitmproxy-ca.pem
 
 进入钥匙串访问工具, 选择mitmproxy的证书
-![key_manager](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/key_manager.png "key_manager")   
+![key_manager](https://raw.githubusercontent.com/ring04h/wyproxy/master/doc/screenshot/key_manager.png "key_manager")   
    
 选择始终信任该证书, 即可生效, 便能成功捕捉所有HTTPS的流量
-![key_trust](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/key_trust.png "key_trust")   
+![key_trust](https://raw.githubusercontent.com/ring04h/wyproxy/master/doc/screenshot/key_trust.png "key_trust")   
 
 ### iPhone配置全局Socks5代理支持   
 用代理自动配置文件pac给iPhone和iPad设备添加socks代理    
@@ -204,7 +204,7 @@ function FindProxyForURL(url, host)
 设置iPhone的无线配置, 代理处填上你的HTTPD服务器地址    
 http://s5.wuyun.org/s5.pac   
 
-![enable_s5](https://raw.githubusercontent.com/ring04h/wyproxy/master/screenshot/enable_s5.png "enable_s5")   
+![enable_s5](https://raw.githubusercontent.com/ring04h/wyproxy/master/doc/screenshot/enable_s5.png "enable_s5")   
     
 这样iPhone上面, 所有的流量，全都会经过wyproxy的socks5代理了
 
