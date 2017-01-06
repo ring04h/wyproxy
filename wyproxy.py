@@ -39,9 +39,12 @@ class WYProxy(flow.FlowMaster):
     def response(self, f):
         wyproxy_response_handle(f)
         if not self.unsave_data:
-            parser = ResponseParser(f)
-            mysqldb_io = MysqlInterface()           
-            mysqldb_io.insert_result(parser.parser_data())
+            try:
+                parser = ResponseParser(f)
+                mysqldb_io = MysqlInterface()           
+                mysqldb_io.insert_result(parser.parser_data())
+            except Exception as e:
+                logging.error(str(e))
         
         # memory overfull bug
         # print(len(self.state.flows))
